@@ -37,13 +37,6 @@ RUN mkdir -p /app/data && \
     mkdir -p /app/config/server && \
     chown -R consul:consul /app
 
-# Client mode has some default configuration that's good for running in containers,
-# namely agents will leave the cluster if you stop the container. This isn't
-# usually desirable for servers so we set the opposite for servers and also skip
-# leaving when servers are interrupted.
-COPY client.json /app/config/client/
-COPY server.json /app/config/server/
-
 # Expose the consul data directory as a volume since there's mutable state in there.
 VOLUME /app/data
 
