@@ -35,7 +35,7 @@ RUN mkdir -p /app/data && \
     mkdir -p /app/config/local && \
     mkdir -p /app/config/client && \
     mkdir -p /app/config/server && \
-    chown -R consul:consul /consul
+    chown -R consul:consul /app
 
 # Client mode has some default configuration that's good for running in containers,
 # namely agents will leave the cluster if you stop the container. This isn't
