@@ -84,11 +84,11 @@ elif [ "$1" = 'server' ]; then
          $CONSUL_CLIENT \
          "$@"
 else
-while [ ! -f "/app/config/server.json" ]; do
-	sleep 1
-done
+    while [ ! -f "/app/config/server.json" ]; do
+    	sleep 1
+    done
 
-sleep 5
+    sleep 5
 
     exec "$@"
 fi
