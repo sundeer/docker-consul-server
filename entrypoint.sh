@@ -37,8 +37,6 @@ if [ "$1" = 'dev' ]; then
         consul agent \
          -dev \
          -config-dir="$CONSUL_CONFIG_DIR/local" \
-         $CONSUL_BIND \
-         $CONSUL_CLIENT \
          "$@"
 elif [ "$1" = 'client' ]; then
     shift
@@ -47,8 +45,6 @@ elif [ "$1" = 'client' ]; then
          -data-dir="$CONSUL_DATA_DIR" \
          -config-dir="$CONSUL_CONFIG_DIR/client" \
          -config-dir="$CONSUL_CONFIG_DIR/local" \
-         $CONSUL_BIND \
-         $CONSUL_CLIENT \
          "$@"
 elif [ "$1" = 'server' ]; then
     shift
@@ -58,8 +54,6 @@ elif [ "$1" = 'server' ]; then
          -data-dir="$CONSUL_DATA_DIR" \
          -config-dir="$CONSUL_CONFIG_DIR/server" \
          -config-dir="$CONSUL_CONFIG_DIR/local" \
-         $CONSUL_BIND \
-         $CONSUL_CLIENT \
          "$@"
 else
     exec "$@"
