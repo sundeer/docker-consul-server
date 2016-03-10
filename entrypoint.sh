@@ -50,6 +50,14 @@ if [ -n "$CONSUL_LOCAL_CONFIG" ]; then
 	echo "$CONSUL_LOCAL_CONFIG" > "$CONSUL_CONFIG_DIR/local/env.json"
 fi
 
+# Wait until the config is available via volumes_from in config service
+while [ ! -f "$CONSUL_CONFIG_DIR/server/server.json" ]; do
+	sleep 1
+done
+
+# Must wait for rancher dns
+sleep 5
+
 # The first argument is used to decide which mode we are running in. All the
 # remaining arguments are passed along to Consul (or the executable if one of
 # the Consul modes isn't selected).
@@ -84,11 +92,5 @@ elif [ "$1" = 'server' ]; then
          $CONSUL_CLIENT \
          "$@"
 else
-    while [ ! -f "/app/config/server.json" ]; do
-    	sleep 1
-    done
-
-    sleep 5
-
     exec "$@"
 fi
