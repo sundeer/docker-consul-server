@@ -58,8 +58,3 @@ EXPOSE 8400 8500 8600 8600/udp
 # process to reap any zombie processes created by Consul sub-processes.
 COPY entrypoint.sh /
 ENTRYPOINT ["/entrypoint.sh"]
-
-# By default you'll get a single-node development server that stores everything
-# in RAM, exposes a web UI, and bootstraps itself. Don't use this configuration
-# for production.
-CMD ["dev"]
